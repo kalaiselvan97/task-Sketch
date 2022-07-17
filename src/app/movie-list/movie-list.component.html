@@ -1,0 +1,49 @@
+<div class="page cardList">
+  <div>
+    <input
+      type="text"
+      class="search"
+      placeholder="Search movies"
+      [(ngModel)]="searchValue"
+    />
+  </div>
+  <div class="reactangle cursor" (click)="Search()">
+    <img class="vector" src="assets/Vector.png" />
+  </div>
+  <div class="trending"><span>Trending</span></div>
+
+  <div class="container">
+    <div class="card" *ngFor="let row of listdata?.results">
+      <div class="cursor">
+        <img
+          [src]="row.poster_path"
+          class="card-img-top"
+          alt="Movie Poster"
+          height="30%"
+          (click)="openView(row)"
+        />
+        <div (click)="openView(row)">
+          <span class="movieTitle">{{ row.original_title | slice: 0:18 }}</span>
+          <div>
+            <span class="rating"
+              ><img
+                src="assets/Star.png"
+                style="margin-right: 10px; margin-top: 2px"
+              />{{ row.vote_average }} / 5</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pagination">
+      <img src="assets/left.png" (click)="pageDecrement()" />
+      <span (click)="page(1)"> 1</span>
+      <span (click)="page(2)"> 2</span>
+      <span (click)="page(3)"> 3</span>
+      <span (click)="page(4)"> 4</span>
+      <span (click)="page(5)"> 5</span>
+      <span (click)="page(6)"> 6</span>
+      <img src="assets/right.png" (click)="pageIncrement()" />
+    </div>
+  </div>
+</div>
